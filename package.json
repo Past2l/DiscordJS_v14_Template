@@ -1,0 +1,46 @@
+{
+  "name": "discordjs_v14_template",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc -p .",
+    "dev": "ts-node ./src/index.ts",
+    "nodemon": "nodemon --watch \"src/**/*.ts\" -e js,jsx,ts,tsx,css,ejs,html,json --exec \"ts-node\" ./src/index.ts",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fix": "npm run fix:lint && npm run fix:format",
+    "fix:format": "npm run fix:prettier",
+    "fix:prettier": "prettier --write \"src/**/*.ts\"",
+    "fix:lint": "eslint \"src/**/*.ts\" --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Past2l/DiscordJS_v14_Template.git"
+  },
+  "author": "Past2l",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "chalk": "^5.2.0",
+    "dayjs": "^1.11.7",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.16"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
