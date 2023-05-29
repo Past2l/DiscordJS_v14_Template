@@ -6,6 +6,7 @@ export default new ExtendedCommand({
     .setName('ping')
     .setDescription('replies with pong'),
   run: async ({ interaction }) => {
+    if (!interaction.isCommand()) return;
     await interaction.reply({
       embeds: [
         new EmbedBuilder()

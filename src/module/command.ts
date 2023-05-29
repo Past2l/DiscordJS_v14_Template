@@ -1,23 +1,18 @@
 import {
   Client,
-  CommandInteraction,
   CommandInteractionOptionResolver,
-  GuildMember,
+  Interaction,
   SlashCommandBuilder,
   SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js';
 
 interface RunOptions {
   client: Client;
-  interaction: ExtendedInteraction;
+  interaction: Interaction;
   args: CommandInteractionOptionResolver;
 }
 
 type RunFunction = (options: RunOptions) => any;
-
-export interface ExtendedInteraction extends CommandInteraction {
-  member: GuildMember;
-}
 
 export type CommandType = {
   command: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
