@@ -1,28 +1,16 @@
 import { EmbedBuilder, ColorResolvable } from 'discord.js';
-import { Default, Field } from '../interface/embed';
+import { IEmbed } from '../interface/embed';
 
 export class Embed {
-  static default(data: Default) {
+  static default(data: IEmbed) {
     const embed = new EmbedBuilder()
       .setColor(data.color as ColorResolvable)
       .setTitle(data.title);
+    if (data.field) embed.addFields(data.field);
     if (data.url) embed.setURL(data.url);
     if (data.image) embed.setImage(data.image);
     if (data.thumbnail) embed.setThumbnail(data.thumbnail);
     if (data.desc) embed.setDescription(data.desc);
-    if (data.footer) embed.setFooter(data.footer);
-    if (data.timestamp) embed.setTimestamp();
-    return embed;
-  }
-
-  static field(data: Field) {
-    const embed = new EmbedBuilder()
-      .setColor(data.color as ColorResolvable)
-      .setTitle(data.title)
-      .addFields(data.field);
-    if (data.url) embed.setURL(data.url);
-    if (data.image) embed.setImage(data.image);
-    if (data.thumbnail) embed.setThumbnail(data.thumbnail);
     if (data.footer) embed.setFooter(data.footer);
     if (data.timestamp) embed.setTimestamp();
     return embed;
