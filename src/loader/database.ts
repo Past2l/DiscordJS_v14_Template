@@ -10,7 +10,7 @@ export default async () => {
     database: process.env.DB_NAME,
     synchronize: true,
     logging: false,
-    entities: ['{dist,src}/**/*.entity.{ts,js}'],
+    entities: [`${__dirname}/../**/*.entity.{ts,js}`],
     migrations: [],
     subscribers: [],
     charset: 'utf8mb4',
