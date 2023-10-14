@@ -2,8 +2,6 @@ import {
   Client,
   CommandInteractionOptionResolver,
   Interaction,
-  SlashCommandBuilder,
-  SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js';
 
 interface RunOptions {
@@ -15,7 +13,7 @@ interface RunOptions {
 type RunFunction = (options: RunOptions) => any;
 
 export type CommandType = {
-  command: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
+  command: any;
   guildId?: string[];
   run: RunFunction;
 };
