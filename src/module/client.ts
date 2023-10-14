@@ -48,7 +48,7 @@ export class ExtendedClient extends Client {
     });
     this.on(Events.ClientReady, async (client) => {
       await this.registerCommands();
-      console.log(`Logged in as \x1b[33m${client.user!.tag}\x1b[0m!`);
+      console.log(`Logged in as \x1b[33m${client.user.tag}\x1b[0m!`);
     });
   }
 
@@ -71,15 +71,17 @@ export class ExtendedClient extends Client {
   }
 
   async registerCommands() {
-    this.rest.setToken(process.env.BOT_TOKEN!);
+    if (!process.env.BOT_TOKEN) throw new Error('No Token Provided');
+    if (!this.application) throw new Error('No Application Provided');
+    this.rest.setToken(process.env.BOT_TOKEN);
     const commandList = Array.from(this.commands.values());
     const guilds = Array.from(this.guilds.cache.values());
     for (const guild of guilds) {
-      let fetch = await guild.commands.fetch();
+      const fetch = await guild.commands.fetch();
       if (fetch.size > 0)
         await this.rest.put(
           Routes.applicationGuildCommands(
-            this.application!.id,
+            this.application.id,
             guild.id.toString(),
           ),
           { body: [] },
@@ -88,17 +90,17 @@ export class ExtendedClient extends Client {
     commandList.map((v) => {
       v.guildId?.forEach((id) => {
         if (!this.guildCommands.get(id)) this.guildCommands.set(id, []);
-        this.guildCommands.get(id)!.push(v.command.toJSON());
+        this.guildCommands.get(id)?.push(v.command.toJSON());
       });
     });
     for (const id of this.guildCommands.keys()) {
       console.log(`Registering Commands to \x1b[32m${id}\x1b[0m`);
       await this.rest.put(
-        Routes.applicationGuildCommands(this.application!.id, id),
+        Routes.applicationGuildCommands(this.application.id, id),
         { body: this.guildCommands.get(id) },
       );
     }
-    await this.rest.put(Routes.applicationCommands(this.application!.id), {
+    await this.rest.put(Routes.applicationCommands(this.application.id), {
       body: commandList
         .filter((v) => !v.guildId || v.guildId.length < 1)
         .map((v) => v.command.toJSON()),
