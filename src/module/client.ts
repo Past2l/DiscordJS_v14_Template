@@ -9,6 +9,7 @@ import { CommandType } from './command';
 import { ExtendedEvent } from './event';
 import { promisify } from 'util';
 import glob from 'glob';
+import { Log } from './log';
 
 const globPromise = promisify(glob);
 
@@ -48,7 +49,7 @@ export class ExtendedClient extends Client {
     });
     this.on(Events.ClientReady, async (client) => {
       await this.registerCommands();
-      console.log(`Logged in as \x1b[33m${client.user.tag}\x1b[0m!`);
+      Log.info(`Logged in as \x1b[33m${client.user.tag}\x1b[0m!`, true);
     });
   }
 
@@ -64,8 +65,9 @@ export class ExtendedClient extends Client {
       const command: CommandType = await this.importFile(path);
       if (!command.command) return;
       this.commands.set(command.command.name, command);
-      console.log(
+      Log.info(
         `Added \x1b[33m${command.command.name}\x1b[0m Command (Location : \x1b[32m${path}\x1b[0m)`,
+        true,
       );
     }
   }
@@ -94,7 +96,7 @@ export class ExtendedClient extends Client {
       });
     });
     for (const id of this.guildCommands.keys()) {
-      console.log(`Registering Commands to \x1b[32m${id}\x1b[0m`);
+      Log.info(`Registering Commands to \x1b[32m${id}\x1b[0m`, true);
       await this.rest.put(
         Routes.applicationGuildCommands(this.application.id, id),
         { body: this.guildCommands.get(id) },
@@ -111,8 +113,9 @@ export class ExtendedClient extends Client {
     const events = await globPromise(`${__dirname}/../event/**/*{.ts,.js}`);
     for (const path of events) {
       const event: ExtendedEvent<any> = await this.importFile(path);
-      console.log(
+      Log.info(
         `Added \x1b[33m${event.event}\x1b[0m Event (Location : \x1b[32m${path}\x1b[0m)`,
+        true,
       );
       this.on(event.event, event.run);
     }

@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
 import { enableDB } from './environment';
+import { Log } from '../module/log';
 
 export default async () => {
   if (enableDB)
@@ -17,6 +18,6 @@ export default async () => {
       subscribers: [],
       charset: 'utf8mb4',
     })
-      .then(() => console.log('Database Connected'))
+      .then(() => Log.info('Database Connected', true))
       .catch((error) => console.error(error));
 };
