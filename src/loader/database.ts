@@ -5,7 +5,7 @@ import { Log } from '../module/log';
 export default async () => {
   if (enableDB)
     await createConnection({
-      type: 'mysql',
+      type: 'postgres',
       host: process.env.DB_HOST,
       port: parseInt(process.env.DB_PORT || ''),
       username: process.env.DB_USERNAME,
@@ -16,7 +16,6 @@ export default async () => {
       entities: [`${__dirname}/../**/*.entity.{ts,js}`],
       migrations: [],
       subscribers: [],
-      charset: 'utf8mb4',
     })
       .then(() => Log.info('Database Connected', true))
       .catch((error) => console.error(error));
