@@ -5,11 +5,9 @@ import {
   GatewayIntentBits,
   Routes,
 } from 'discord.js';
-import { CommandType } from './command';
-import { ExtendedEvent } from './event';
+import { CommandType, ExtendedEvent, Log } from '.';
 import { promisify } from 'util';
 import glob from 'glob';
-import { Log } from './log';
 
 const globPromise = promisify(glob);
 
