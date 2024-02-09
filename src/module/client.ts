@@ -5,7 +5,7 @@ import {
   GatewayIntentBits,
   Routes,
 } from 'discord.js';
-import { CommandType, ExtendedEvent, Log } from '.';
+import { CommandType, ExtendedEvent, ExtendedInteraction, Log } from '.';
 import { promisify } from 'util';
 import glob from 'glob';
 
@@ -41,7 +41,7 @@ export class ExtendedClient extends Client {
           command.run({
             args: interaction.options as CommandInteractionOptionResolver,
             client: this,
-            interaction: interaction,
+            interaction: interaction as ExtendedInteraction,
           });
       }
     });

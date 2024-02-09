@@ -1,12 +1,13 @@
 import {
   Client,
+  CommandInteraction,
   CommandInteractionOptionResolver,
-  Interaction,
+  GuildMember,
 } from 'discord.js';
 
 interface RunOptions {
   client: Client;
-  interaction: Interaction;
+  interaction: ExtendedInteraction;
   args: CommandInteractionOptionResolver;
 }
 
@@ -17,6 +18,10 @@ export type CommandType = {
   guildId?: string[];
   run: RunFunction;
 };
+
+export interface ExtendedInteraction extends CommandInteraction {
+  member: GuildMember;
+}
 
 export class ExtendedCommand {
   constructor(commandOptions: CommandType) {
