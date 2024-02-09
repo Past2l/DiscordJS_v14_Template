@@ -13,7 +13,7 @@ export default async () => {
       database: process.env.DB_NAME,
       synchronize: true,
       logging: false,
-      entities: [`${__dirname}/../**/*.entity.{ts,js}`],
+      entities: [`${__dirname}/../**/database/*.{ts,js}`],
       migrations: [],
       subscribers: [],
     })
