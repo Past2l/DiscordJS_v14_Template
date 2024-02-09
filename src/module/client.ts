@@ -64,7 +64,11 @@ export class ExtendedClient extends Client {
       if (!command.command) return;
       this.commands.set(command.command.name, command);
       Log.info(
-        `Added \x1b[33m${command.command.name}\x1b[0m Command (Location : \x1b[32m${path}\x1b[0m)`,
+        `Added \x1b[33m${
+          command.command.name
+        }\x1b[0m Command (Location : \x1b[32m${path
+          .replace(/module\/\.\.\//g, '')
+          .replace(/module\\\.\.\\/g, '')}\x1b[0m)`,
         true,
       );
     }
@@ -112,7 +116,9 @@ export class ExtendedClient extends Client {
     for (const path of events) {
       const event: ExtendedEvent<any> = await this.importFile(path);
       Log.info(
-        `Added \x1b[33m${event.event}\x1b[0m Event (Location : \x1b[32m${path}\x1b[0m)`,
+        `Added \x1b[33m${event.event}\x1b[0m Event (Location : \x1b[32m${path
+          .replace(/module\/\.\.\//g, '')
+          .replace(/module\\\.\.\\/g, '')}\x1b[0m)`,
         true,
       );
       this.on(event.event, event.run);
