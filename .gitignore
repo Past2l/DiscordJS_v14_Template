@@ -1,20 +1,8 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node,git,visualstudiocode,intellij+all,yarn
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,node,git,visualstudiocode,intellij+all,yarn
+# Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij+all,webstorm+all,visualstudiocode,node,dotenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,intellij+all,webstorm+all,visualstudiocode,node,dotenv
 
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
+### dotenv ###
+.env
 
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -228,7 +216,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
@@ -311,6 +298,61 @@ dist
 .history
 .ionide
 
+### WebStorm+all ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+
+# AWS User-specific
+
+# Generated files
+
+# Sensitive or high-churn files
+
+# Gradle
+
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
+
+# CMake
+
+# Mongo Explorer plugin
+
+# File-based project format
+
+# IntelliJ
+
+# mpeltonen/sbt-idea plugin
+
+# JIRA plugin
+
+# Cursive Clojure plugin
+
+# SonarLint plugin
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+
+# Editor-based Rest Client
+
+# Android studio 3.1+ serialized cache file
+
+### WebStorm+all Patch ###
+# Ignore everything but code style settings and run configurations
+# that are supposed to be shared within teams.
+
+
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -337,24 +379,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-### yarn ###
-# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
-
-.yarn/*
-!.yarn/releases
-!.yarn/patches
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-
-# if you are NOT using Zero-installs, then:
-# comment the following lines
-!.yarn/cache
-
-# and uncomment the following lines
-# .pnp.*
-
-.idea
-package-lock.json
-
-# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node,git,visualstudiocode,intellij+all,yarn
+# End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,intellij+all,webstorm+all,visualstudiocode,node,dotenv
