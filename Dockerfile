@@ -1,13 +1,18 @@
+FROM node:20-alpine AS base
+
+# Install pnpm
+RUN npm install -g pnpm
+
 # Build
-FROM node:18 AS builder
+FROM base AS builder
 WORKDIR /app
 COPY . .
-RUN npm install
-RUN npm run build
+RUN pnpm install
+RUN pnpm run build
 
 # Run
-FROM node:18-alpine
+FROM base AS deploy
 WORKDIR /app
 ENV NODE_ENV production
 COPY --from=builder /app ./
-CMD ["npm" ,"start"]
+CMD ["pnpm" ,"start"]
